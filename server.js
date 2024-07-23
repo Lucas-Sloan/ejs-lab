@@ -60,6 +60,10 @@ app.get('/', (req, res) => {
   res.render('home', {restaurant: RESTAURANT});
 });
 
+app.get('/menu', (req, res) => {
+  res.render('menu', {restaurant : RESTAURANT});
+});
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
