@@ -4,8 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu</title>
+  <%- include('./partials/nav') %>
 </head>
 <body>
-  <h1>Full Menu</h1>
+  <h1><%= restaurant.name %> Menu</h1>
+  <h2>Address: <%= restaurant.address %></h2>
+  <h3>Phone: <%= restaurant.phone %></h3>
+
+  <% const categories = ['mains', 'desserts', 'sides']; %>
+
+  <% categories.forEach(category => { %>
+    <% const items = restaurant.menu.filter(item => item.category === category); %>
+    <% if (items.length > 0) { %>
+        <h2><%= category.charAt(0).toUpperCase() + category.slice(1) %></h2>
+        <ul>
+            <% items.forEach(item => { %>
+                <li>
+                    <h3><%= item.name %> - $<%= item.price.toFixed(2) %></h3>
+                    <p><%= item.details %></p>
+                    <p>Rating <%= item.rating %>/5</p>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+  <% }); %>
 </body>
 </html>
