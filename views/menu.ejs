@@ -20,7 +20,10 @@
         <ul>
             <% items.forEach(item => { %>
                 <li>
-                    <h3><%= item.name %> - $<%= item.price.toFixed(2) %></h3>
+                    <h3>
+                        <%= item.name %> - $<%= item.price.toFixed(2) %>
+                        <% if (item.rating === 5) { %> ⭐ <% } %>
+                    </h3>
                     <p><%= item.details %></p>
                     <p>Rating <%= item.rating %>/5</p>
                 </li>
