@@ -64,6 +64,20 @@ app.get('/menu', (req, res) => {
   res.render('menu', {restaurant : RESTAURANT});
 });
 
+app.get('/menu/:category', (req, res) => {
+  const { category } = req.params;
+  const validCategories = ['mains', 'desserts', 'sides'];
+
+  if (!validCategories.includes(category)) {
+    return res.status(404).send('Category not found');
+  }
+
+  const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);
+  const menuItems = RESTAURANT.menu.filter(item => item.category === category);
+
+  res.render('category', { category: capitalizedCategory, menuItems, restaurant: RESTAURANT});
+})
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
